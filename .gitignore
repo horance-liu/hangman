@@ -12,6 +12,7 @@
 *.ipr
 *.iml
 *.iws
+out/
 
 ## Maven
 target/
