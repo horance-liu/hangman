@@ -8,7 +8,7 @@ import static java.util.stream.Collectors.toList;
 
 public class Hangman {
   private List<String> used = new ArrayList<String>() {{
-    add("A"); add("E"); add("I"); add("O"); add("U");
+    add("AEIOU");
   }};
 
   private int tries = 12;
