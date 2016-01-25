@@ -1,7 +1,8 @@
-apply plugin: 'java'
 apply plugin: 'scala'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
+apply plugin: 'scala'
+
+group = "cn.codingstyle.hangman"
+version = "1.0-SNAPSHOT"
 
 repositories {
   mavenCentral()
