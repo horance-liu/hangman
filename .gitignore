@@ -1,0 +1,24 @@
+## Temp 
+.DS_Store
+*.swp
+*.bak
+
+## Eclipse
+.project
+.classpath
+.settings/
+
+## IDEA
+*.ipr
+*.iml
+*.iws
+
+## Maven
+target/
+
+## Gradle
+build/
+.gradle/
+gradle
+.gradletasknamecache
+
