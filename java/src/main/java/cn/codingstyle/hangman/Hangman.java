@@ -15,10 +15,10 @@ public class Hangman {
   private List<String> solution;
 
   public Hangman(String solution) {
-    this.solution = toCharSequence(solution);
+    this.solution = toCharSequences(solution);
   }
 
-  private static List<String> toCharSequence(String str) {
+  private static List<String> toCharSequences(String str) {
     return new ArrayList<String>() {{
       for (int i = 0; i < str.length(); i++)
         add(valueOf(str.charAt(i)));
