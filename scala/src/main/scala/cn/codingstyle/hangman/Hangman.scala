@@ -1,8 +1,22 @@
 package cn.codingstyle.hangman
 
-class Hangman(solution: String) {
-  def tries = 12
-  def used = "AEIOU"
-  def length = 5
-  def problem = "A___E"
+case class Hangman
+  ( solution: String,
+    used: String = "AEIOU",
+    tries: Int = 12) {
+
+  def length = solution.length
+  def won = solution == problem
+  def lost = tries == 0
+
+  def problem = {
+    def to(c: Char) = if (used.contains(c)) c else '_'
+    solution.map(to).mkString
+  }
+
+  def tryChar(c: Char): Hangman =
+    copy(used = used + c, tries = newTries(c))
+
+  private def newTries(c: Char): Int =
+    if (solution.contains(c)) tries else tries - 1
 }
