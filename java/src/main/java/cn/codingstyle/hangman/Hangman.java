@@ -1,73 +1,41 @@
 package cn.codingstyle.hangman;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.lang.String.valueOf;
-import static java.util.stream.Collectors.toList;
+import static cn.codingstyle.hangman.Strings.contains;
+import static cn.codingstyle.hangman.Strings.map;
 
 public class Hangman {
-  private List<String> used = new ArrayList<String>() {{
-    add("A"); add("E"); add("I"); add("O"); add("U"); 
-  }};
-
+  private String solution;
+  private String used = "AEIOU";
   private int tries = 12;
-  private List<String> solution;
 
   public Hangman(String solution) {
-    this.solution = toCharSequences(solution);
-  }
-
-  private static List<String> toCharSequences(String str) {
-    return new ArrayList<String>() {{
-      for (int i = 0; i < str.length(); i++)
-        add(valueOf(str.charAt(i)));
-    }};
-  }
-
-  private Hangman(List<String> solution, List<String> used, int tries) {
     this.solution = solution;
-    this.used = used;
-    this.tries = tries;
   }
 
   public Hangman tryChar(char ch) {
     return new Hangman(solution, newUsed(ch), newTries(ch));
   }
 
-  private List<String> newUsed(char ch) {
-    return new ArrayList<String>() {{
-      addAll(used); add(valueOf(ch)); }};
+  private Hangman(String solution, String used, int tries) {
+    this.solution = solution;
+    this.used = used;
+    this.tries = tries;
+  }
+
+  private String newUsed(char ch) {
+    return used + ch;
   }
 
   private int newTries(char ch) {
-    return solution.contains(valueOf(ch)) ? tries : tries - 1;
-  }
-
-  public boolean won() {
-    return problem().equals(toStr(solution));
-  }
-
-  public boolean lost() {
-    return tries == 0;
+    return contains(solution, ch) ? tries : tries - 1;
   }
 
   public String used() {
-    return toStr(used);
+    return used;
   }
 
   public String problem() {
-    return toStr(mapToProblem());
-  }
-
-  private List<String> mapToProblem() {
-    return solution.stream()
-        .map(ch -> used.contains(ch) ? ch : "_")
-        .collect(toList());
-  }
-
-  private static String toStr(List<String> chars) {
-    return String.join("", chars);
+    return map(solution, ch -> contains(used, ch) ? ch : '_');
   }
 
   public int tries() {
@@ -75,6 +43,14 @@ public class Hangman {
   }
 
   public int length() {
-    return solution.size();
+    return solution.length();
+  }
+
+  public boolean won() {
+    return problem().equals(solution);
+  }
+
+  public boolean lost() {
+    return tries == 0;
   }
 }

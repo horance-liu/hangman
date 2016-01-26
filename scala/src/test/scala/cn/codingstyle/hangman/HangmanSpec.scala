@@ -3,10 +3,10 @@ package cn.codingstyle.hangman
 import org.scalatest._
 import org.scalatest.Matchers._
 
-class RuleSpec extends FunSpec {
+class HangmanSpec extends FunSpec {
   describe("start game") {
 
-    def where(word: String, length: Int, problem: String) {
+    def expect(word: String, length: Int, problem: String) {
       val hangman = new Hangman(word)
 
       hangman.tries should be(12)
@@ -17,10 +17,10 @@ class RuleSpec extends FunSpec {
     }
 
     it("should be initialiazed") {
-      where(word = "APPLE", length = 5, problem = "A___E")
-      where(word = "GOOGLE",length = 6, problem = "_OO__E")
-      where(word = "AEIOU", length = 5, problem = "AEIOU")
-      where(word = "",      length = 0, problem = "")
+      expect(word = "APPLE", length = 5, problem = "A___E")
+      expect(word = "GOOGLE",length = 6, problem = "_OO__E")
+      expect(word = "AEIOU", length = 5, problem = "AEIOU")
+      expect(word = "",      length = 0, problem = "")
     }
 
     it("try guess GOOGLE") {

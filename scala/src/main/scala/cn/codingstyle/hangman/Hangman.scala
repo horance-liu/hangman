@@ -10,8 +10,8 @@ case class Hangman
   def lost = tries == 0
 
   def problem = {
-    def to(c: Char) = if (used.contains(c)) c else '_'
-    solution.map(to).mkString
+    def mask(c: Char) = if (used.contains(c)) c else '_'
+    solution.map(mask).mkString
   }
 
   def tryChar(c: Char): Hangman =

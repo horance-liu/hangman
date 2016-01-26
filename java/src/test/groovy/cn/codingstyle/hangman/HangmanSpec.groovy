@@ -5,7 +5,7 @@ import spock.lang.Specification
 class HangmanSpec extends Specification {
   def "start game"() {
     when:
-    Hangman hangman = new Hangman(start);
+    Hangman hangman = new Hangman(start)
 
     then:
     hangman.tries() == tries
@@ -23,7 +23,7 @@ class HangmanSpec extends Specification {
 
   def "play game"() {
     given:
-    Hangman hangman = new Hangman("APPLE");
+    Hangman hangman = new Hangman("APPLE")
 
     when:
     Hangman newHangman = hangman.tryChar(ch as char)
@@ -41,7 +41,7 @@ class HangmanSpec extends Specification {
 
   def "final result"() {
     given:
-    Hangman hangman = new Hangman("APPLE");
+    Hangman hangman = new Hangman("APPLE")
 
     when:
     tries.each { hangman = hangman.tryChar(it as char) }
